@@ -2,8 +2,6 @@
 
 Labs and exercises to help you learn DevOps and DevSecOps practices.
 
-Live at https://devsecops.courselabs.co.
-
 ## Credits
 
 Parts of the practical work are adapted from other labs:
