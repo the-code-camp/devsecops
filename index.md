@@ -7,7 +7,7 @@ These are hands-on resources to help you learn DevOps and DevSecOps practices.
  - [Set up Docker and a Git client](setup/README.md) 
  - Download your repo
     - Open a terminal (PowerShell on Windows; any shell on Linux/macOS) 
-    - Run: `git clone https://github.com/thecodecamp/devsecops.git`
+    - Run: `git clone https://github.com/the-code-camp/devsecops.git`
     - Open the folder: `cd devsecops`
 - _Optional_
     -   Install [Visual Studio Code](https://code.visualstudio.com) (free - Windows, macOS and Linux) to browse the repo and documentation
