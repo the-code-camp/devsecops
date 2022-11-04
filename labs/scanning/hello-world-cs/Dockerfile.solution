@@ -15,7 +15,7 @@ ENTRYPOINT ["dotnet", "hello-world.dll"]
 
 # CVE scanner
 FROM app AS scan
-COPY --from=aquasec/trivy:0.21.1 /usr/local/bin/trivy /usr/local/bin/trivy
+COPY --from=aquasec/trivy:0.34.0 /usr/local/bin/trivy /usr/local/bin/trivy
 RUN trivy --version > /scanner.txt && \
     trivy rootfs -s HIGH --exit-code 1 --no-progress /
 
