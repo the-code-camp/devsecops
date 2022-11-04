@@ -138,7 +138,7 @@ So this is a .NET app. To be sure we're not cheating, run this command inside th
 
 ```
 # this will fail
-docker exec infra_jenkins_1 dotnet --version
+docker exec infra-jenkins-1 dotnet --version
 ```
 
 > You'll see a `not found in $PATH` error because there is no .NET in the container. That's OK though because it's a multi-stage build and the compilation will run inside containers.
