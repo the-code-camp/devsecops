@@ -21,7 +21,7 @@ Trivy is a command line tool, but we don't need to install it on our machines, w
 Run a Trivy container - this [Docker Compose file](./docker-compose.yml) mounts your local repo folder mounted into the container filesystem, so Trivy can see those files:
 
 ```
-docker-compose -f labs/scanning/docker-compose.yml run trivy
+docker compose -f labs/scanning/docker-compose.yml run trivy
 ```
 
 You're connected to the Trivy container. Check the commands you can run, and then scan an image on Docker Hub:

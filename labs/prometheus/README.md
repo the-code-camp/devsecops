@@ -19,7 +19,7 @@ We'll run Prometheus in a Docker container:
 Start the container:
 
 ```
-docker-compose -f labs/prometheus/prometheus.yml up -d
+docker compose -f labs/prometheus/prometheus.yml up -d
 ```
 
 > Browse to the Prometheus UI at http://localhost:9090
@@ -36,7 +36,7 @@ This [Docker Compose file (apps.yml)](./apps.yml) starts some sample apps which 
 Run the apps:
 
 ```
-docker-compose -f labs/prometheus/apps.yml up -d
+docker compose -f labs/prometheus/apps.yml up -d
 ```
 
 > Refresh the status page at http://localhost:9090/targets and you'll see the targets come online

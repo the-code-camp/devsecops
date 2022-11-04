@@ -19,7 +19,7 @@ We'll start by building [this Dockerfile](./docker/Dockerfile), using [this Jenk
 Start by running Jenkins and Gogs using this [Docker Compose spec](./infra/docker-compose.yml):
 
 ```
-docker-compose -f labs/pipeline/infra/docker-compose.yml up -d
+docker compose -f labs/pipeline/infra/docker-compose.yml up -d
 ```
 
 > The Jenkins service is configured to mount the Docker socket, which is how the container can talk to the Docker Engine where it's running.

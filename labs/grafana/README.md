@@ -18,7 +18,7 @@ Grafana is a cross-platform app, written in Go. You can [download Grafana](https
 Run the metrics components:
 
 ```
-docker-compose -f labs/grafana/grafana.yml up -d
+docker compose -f labs/grafana/grafana.yml up -d
 ```
 
 > Check the Prometheus status at http://localhost:9090/targets
@@ -130,7 +130,7 @@ Start the apps, so Prometheus will have some metrics to collect:
 Run the apps:
 
 ```
-docker-compose -f labs/grafana/apps.yml up -d
+docker compose -f labs/grafana/apps.yml up -d
 ```
 
 > Switch back to Grafana - you'll see  the table update as instances come online.

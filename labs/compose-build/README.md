@@ -14,9 +14,9 @@ Docker Compose models can include build-time details, so you can build multiple 
 Docker Compose has commands to work with images:
 
 ```
-docker-compose build --help
+docker compose build --help
 
-docker-compose push --help
+docker compose push --help
 ```
 
 > These support multiple YAML files in the same way as the other commands.
@@ -39,7 +39,7 @@ All paths in Compose are relative to the location of the Compose file.
 ```
 cd labs/compose-build/rng
 
-docker-compose build 
+docker compose build 
 ```
 
 </details><br/>
@@ -54,7 +54,7 @@ These images have the tag `21.05-local`. You can use the same Compose file to ru
   <summary>Not sure how?</summary>
 
 ```
-docker-compose up -d
+docker compose up -d
 
 # try the app at http://localhost:8090
 ```
@@ -84,7 +84,7 @@ And with some additional config you can add some useful auditing to your images:
 
 ```
 # join all the files to get the full build spec:
-docker-compose -f core.yml -f build.yml -f args.yml build
+docker compose -f core.yml -f build.yml -f args.yml build
 
 # this output shows label values:
 docker image inspect --format '{{.Config.Labels}}' courselabs/rng-api:21.05-0
@@ -113,7 +113,7 @@ $env:BUILD_NUMBER='121'
 
 ```
 # it's the same set of files:
-docker-compose -f core.yml -f build.yml -f args.yml build
+docker compose -f core.yml -f build.yml -f args.yml build
 
 # the tag is 2021.07-121
 
@@ -129,11 +129,11 @@ Those labels values aren't very useful when you build locally - but in a Continu
 
 ## Docker Compose for CI builds
 
-Compose is great for running lots of non-production environments on a single machine, but if you're not planning to use it for that the build feature is perfect for Continuous Integration. You can easily build your apps in Jenkins or GitHub Actions just by running `docker-compose build`.
+Compose is great for running lots of non-production environments on a single machine, but if you're not planning to use it for that the build feature is perfect for Continuous Integration. You can easily build your apps in Jenkins or GitHub Actions just by running `docker compose build`.
 
 This repo also has a GitHub Actions workflow to build the RNG images using the same Docker Compose files you've been using locally:
 
-- [rng-build.yml](./github/rng-build.yml) - GitHub workflows use a YAML spec, but if you're not familiar with them you'll see the same `docker-compose` commands being executed.
+- [rng-build.yml](./github/rng-build.yml) - GitHub workflows use a YAML spec, but if you're not familiar with them you'll see the same `docker compose` commands being executed.
 
 The real images are in a public repo so you can browse to the workflow output:
 

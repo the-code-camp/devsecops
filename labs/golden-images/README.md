@@ -17,7 +17,7 @@ Let's understand the problem first. These two Java apps use different base image
 Build both apps with Compose:
 
 ```
-docker-compose -f labs/golden-images/apps/docker-compose.yml build
+docker compose -f labs/golden-images/apps/docker-compose.yml build
 ```
 
 📋 List out the new images and compare them. Inspect the layers - are the two Java apps making good use of the layer cache?
@@ -69,7 +69,7 @@ This library has two sets of images for Java apps:
   <summary>Not sure how?</summary>
 
 ```
-docker-compose -f ./labs/golden-images/library/docker-compose.yml build --pull
+docker compose -f ./labs/golden-images/library/docker-compose.yml build --pull
 ```
 
 </details>
@@ -103,7 +103,7 @@ Using the image library just means changing the `FROM` image in the application 
 Build the new versions:
 
 ```
-docker-compose -f labs/golden-images/apps/docker-compose-v2.yml build
+docker compose -f labs/golden-images/apps/docker-compose-v2.yml build
 ```
 
 

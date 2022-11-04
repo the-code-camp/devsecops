@@ -119,13 +119,13 @@ su $USER
 And then:
 
 ```
-docker-compose version
+docker compose version
 ```
 
 My output is:
 
 ```
-docker-compose version 1.29.1, build c34c88b2
+docker compose version 1.29.1, build c34c88b2
 docker-py version: 5.0.0
 CPython version: 3.9.0
 OpenSSL version: OpenSSL 1.1.1g  21 Apr 2020

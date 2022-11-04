@@ -17,7 +17,7 @@ The UI and the plugins are one of the main reasons people don't like Jenkins. Pl
 Start by running Jenkins inside a Docker container, along with a local Git server (using Gogs):
 
 ```
-docker-compose -f labs/jenkins/infra/docker-compose.yml up -d
+docker compose -f labs/jenkins/infra/docker-compose.yml up -d
 ```
 
 > This is a custom setup of Jenkins with a few plugins already installed. It's built from [this Dockerfile](https://github.com/courselabs/docker-images/blob/main/src/jenkins/Dockerfile) if you want to see how it's automated.

@@ -21,7 +21,7 @@ There are commercial versions of SonarQube but we'll run the free community edit
 Start by running SonarQube - this [Docker Compose file](./infra/docker-compose.yml) uses the official image on Docker Hub, and publishes to port 9000 on your machine:
 
 ```
-docker-compose -f labs/static-analysis/infra/docker-compose.yml up -d
+docker compose -f labs/static-analysis/infra/docker-compose.yml up -d
 ```
 
 SonarQube can take a minute or two to spin up. When the container is running, log in to the web UI at http://localhost:9000 using System Administrator credentials:

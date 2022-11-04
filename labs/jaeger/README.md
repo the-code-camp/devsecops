@@ -21,7 +21,7 @@ We'll run a simple configuration of Jaeger, where all the components run in a si
 Run Jaeger:
 
 ```
-docker-compose -f labs/jaeger/jaeger.yml up -d
+docker compose -f labs/jaeger/jaeger.yml up -d
 ```
 
 Browse to the Jaeger UI at http://localhost:16686; hit the _Search_ menu at the top and refresh your browser page. This shows all the services which have sent spans to Jaeger, and the names of the operations in the spans.
@@ -67,7 +67,7 @@ The demo application we'll use has three components which are all set up with di
 Run the application containers:
 
 ```
-docker-compose -f labs/jaeger/apps.yml up -d
+docker compose -f labs/jaeger/apps.yml up -d
 ```
 
 Browse to the home page for the web UI at http://localhost:8070, and then refresh your Jaeger search at http://localhost:16686/search.

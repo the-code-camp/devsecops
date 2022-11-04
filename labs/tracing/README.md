@@ -19,7 +19,7 @@ We have a new demo app - a very simple web UI which is part of the (fake) docume
 Start by running the app and checking the logs:
 
 ```
-docker-compose -f labs/tracing/web.yml up -d
+docker compose -f labs/tracing/web.yml up -d
 
 docker logs -f courselabs-fulfilment-web-1
 ```
@@ -112,7 +112,7 @@ Start the document fulfilment API server so we can see tracing between component
 Run the API container and check its logs:
 
 ```
-docker-compose -f labs/tracing/api.yml up -d
+docker compose -f labs/tracing/api.yml up -d
 
 docker logs -f courselabs-fulfilment-api-1
 ```

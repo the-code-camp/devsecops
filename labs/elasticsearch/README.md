@@ -20,7 +20,7 @@ Elasticsearch is a Java application. The licensing model is a bit involved, but 
 Start the container:
 
 ```
-docker-compose -f labs/elasticsearch/compose.yml up -d
+docker compose -f labs/elasticsearch/compose.yml up -d
 ```
 
 Check the logs and you'll see Elasticsearch starting up:
