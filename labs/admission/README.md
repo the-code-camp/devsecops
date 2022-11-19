@@ -153,7 +153,7 @@ The fix is in [fix-1/01-namespace.yaml](./specs/pi/fix-1/01-namespace.yaml) whic
 kubectl apply -f labs/admission/specs/pi/fix-1
 ```
 
-The output from Kubectl says all the objects are created. It should be listening at http://localhost:30031. Is it working? No... The Service has been created but there's no response from it.
+The output from Kubectl says all the objects are created. It should be listening at http://192.168.49.2:30031. Is it working? No... The Service has been created but there's no response from it.
 
 📋 Can you debug to see what the problem is?
 
@@ -217,7 +217,7 @@ Looking good :)
 
 </details>
 
-Try the app now at http://localhost:30031. It's running with a constrained amount of CPU and memory, and from an ops perspective it's easy to manage because it has a consistent set of labels.
+Try the app now at http://192.168.49.2:30031. It's running with a constrained amount of CPU and memory, and from an ops perspective it's easy to manage because it has a consistent set of labels.
 
 ## Lab
 

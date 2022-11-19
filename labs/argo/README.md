@@ -73,11 +73,17 @@ This installation of ArgoCD includes a web UI. The initial admin password is sto
 kubectl -n argocd get secret argocd-initial-admin-secret -o go-template="{{.data.password | base64decode}}"
 ```
 
-Open the UI at http://localhost:30881, log in with username `admin` and the password from your Secret.
+- run this to expose the service through minikube proxy and get the URL:
+```
+minikube service -n argocd argocd-server-np --url
+```
+
+
+Open the UI at http://192.168.49.2:30881, log in with username `admin` and the password from your Secret.
 
 > You'll be redirected to HTTPS with a self-signed certificate, so you'll need to accept the security warning in your browser.
 
-Open https://localhost:30881/settings/clusters - ArgoCD is registered with the local cluster so it can manage applications, but there are no apps yet.
+Open https://192.168.49.2:30881/settings/clusters - ArgoCD is registered with the local cluster so it can manage applications, but there are no apps yet.
 
 ## Configure the Git server
 
@@ -95,13 +101,13 @@ Deploy the Git server:
 kubectl apply -f labs/argo/specs/gogs
 ```
 
-Browse to http://localhost:30300/ and when the site is ready, sign in with username `courselabs` and password `student`.
+Browse to http://192.168.49.2:30300/ and when the site is ready, sign in with username `courselabs` and password `student`.
 
 Add the new Git server as a remote for this repo and push a copy of the content:
 
 ```
 # add the local Git server:
-git remote add labs-argo http://localhost:30300/courselabs/labs.git
+git remote add labs-argo http://192.168.49.2:30300/courselabs/labs.git
 
 # push to the expected branch name:
 git push labs-argo main:master
@@ -112,7 +118,7 @@ git push labs-argo main:master
 Now connect the ArgoCD CLI to the ArgoCD server, **using your password from the Secret**:
 
 ```
-argocd login localhost:30881 --insecure --username admin --password <your-password>
+argocd login 192.168.49.2:30881 --insecure --username admin --password <your-password>
 
 argocd cluster list
 ```
@@ -147,9 +153,9 @@ argocd app get whoami
 </details><br/>
 
 
-You can also see the new application in the UI at https://localhost:30881/applications. You'll see the status is _Synced_ and if you open the app you'll see all the Kubernetes resources.
+You can also see the new application in the UI at https://192.168.49.2:30881/applications. You'll see the status is _Synced_ and if you open the app you'll see all the Kubernetes resources.
 
-ArgoCD deploys the app from the YAML specs in the repo - with no pipeline or scripts to maintain. You can test the app at http://localhost:30010/.
+ArgoCD deploys the app from the YAML specs in the repo - with no pipeline or scripts to maintain. You can test the app at http://192.168.49.2:30010/.
 
 
 ## Lab
