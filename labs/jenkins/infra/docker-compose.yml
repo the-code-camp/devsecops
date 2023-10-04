@@ -8,7 +8,7 @@ services:
       - "3000:3000"
 
   jenkins:
-    image: courselabs/jenkins:2.319.1
+    image: thecodecamp/jenkins:2.426-alpine-jdk21-preview
     ports:
       - "8080:8080"
     volumes:
