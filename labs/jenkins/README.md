@@ -99,62 +99,6 @@ If there were other steps after this one, they wouldn't run because the job exit
 
 > This is the old-school way of using Jenkins. Where does the job definition live? How would you migrate it to a new Jenkins server? The better option is to use [pipelines](https://www.jenkins.io/doc/book/pipeline/), which use plugins that are already installed on this server.
 
-## Pipelines and the Blue Ocean UI
-
-The pipeline feature comes with the `workflow-aggregator` and `blueocean` plugins. Those give you the new way of defining and managing jobs, where the job definition is stored in source control.
-
-Browse to the Jenkins homepage and select _Open Blue Ocean_ from the left nav. You'll see your original build job - click to open it in the new UI, where you can start a new build and view the logs.
-
-We'll create a new pipeline job instead. Browse back to main Blue Ocean UI at http://localhost:8080/blue and click _New pipeline_.
-
-📋 Set up the new pipeline to connect to your Git server, running at http://gogs:3000/courselabs/labs.git - it uses the same credentials as Jenkins.
-
-<details>
-  <summary>Not sure how?</summary>
-
-- Select _Git_ in the source code list (not _GitHub_! we're using our own Git server)
-
-- Set the _Repository URL_ to http://gogs:3000/courselabs/labs.git 
-
-- Set _Username_ to `courselabs` and _Password_ to `student`
-
-- Click _Create Credential_ - the login details are stored in Jenkins
-
-- Click _Create Pipeline_
-
-- Click _Create Pipeline_ again :)
-
-</details><br/>
-
-> The Jenkins container is on the same Docker network as the Gogs container, so it can access it using the DNS name `gogs`. 
-
-Your new pipeline starts empty. Click the plus icon `+` in the pipeline visualizer to add a new stage. Call the stage `audit`. Then click _Add step_ to add a step to the stage:
-
-- Select _Shell Script_ as the step type
-
-- Paste this into the script text box:
-
-```
-echo "This is build number: $BUILD_NUMBER of job: $JOB_NAME"
-
-javac --version
-```
-
-> The UI may not preserve the line spaces correctly, you can ignore that.
-
-Click _Save_ and then _Save & run_. Jenkins creates the pipeline definition and uploads it to the Git server. Wait a moment and the build will automatically start. The build should succeed - check the output to see the message.
-
-📋 Browse to your Git repo at http://localhost:3000/courselabs/labs - where is the build definition stored?
-
-<details>
-  <summary>Not sure?</summary>
-
-There's a single file in the repo called `Jenkinsfile`. Open it and you'll see the pipeline definition, with the stage called `audit` containing the shell script to print version numbers.
-
-</details><br/>
-
-The UI to build a pipeline is useful, but typically you'll create the Jenkinsfile in your source repo and edit the text directly when you change the pipeline. 
-
 ## Storing Pipelines in Source Code
 
 We'll use [this Jenkinsfile](./manual-gate/Jenkinsfile) for our next build. It has multiple stages but it should be fairly clear what it's doing. An interesting point is the _Deploy_ stage which used an `input` block to ask a user for confirmation.
