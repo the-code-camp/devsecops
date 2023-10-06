@@ -1,6 +1,6 @@
 ARG ALPINE_VERSION='3.15'
 FROM alpine:${ALPINE_VERSION}
 
-ARG OPENJDK_VERSION='11.0.13_p8-r0'
+ARG OPENJDK_VERSION='11.0.19_p7-r0'
 RUN apk add --no-cache \
     openjdk11-jre=${OPENJDK_VERSION}
