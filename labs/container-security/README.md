@@ -166,7 +166,7 @@ Not every app will work with those controls applied though. Here's a [Deployment
 Your job is to work out which set of controls can be applied without breaking the app. Start by deploying it as-is:
 
 ```
-k apply -f labs/container-security/specs/whoami
+kubectl apply -f labs/container-security/specs/whoami
 ```
 
 Verify you can use the app at http://localhost:30022/. Then add in the security controls until you have as many enabled as you can, with the app still working.
