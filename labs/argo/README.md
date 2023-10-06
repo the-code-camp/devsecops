@@ -62,7 +62,7 @@ Argo installs a new custom object type called _Application_.
 Custom objects can be used in Kubectl like ordinary objects:
 
 ```
-kubectl get applications
+kubectl get all -n argocd
 ```
 
 </details><br/>
