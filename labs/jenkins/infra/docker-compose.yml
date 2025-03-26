@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
 
   gogs:
@@ -8,7 +6,7 @@ services:
       - "3000:3000"
 
   jenkins:
-    image: thecodecamp/jenkins:2.426-alpine-jdk21-preview
+    image: thecodecamp/jenkins:2.494-alpine-jdk21
     ports:
       - "8080:8080"
     volumes:
