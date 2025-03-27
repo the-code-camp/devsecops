@@ -116,7 +116,7 @@ docker push --all-tags ${dockerId}/curl
 
 > You'll see lots of `Layer already exists` output - registries have the same layer caching approach as the Docker Engine.
 
-## Running a local registry
+## Running a local registry (Optional)
 
 Docker images for real apps can be big - hundreds of megabytes or even gigabytes. Downloading large images adds to the startup time for containers, so organizations typically run their own registry in the cloud or the datacenter.
 
