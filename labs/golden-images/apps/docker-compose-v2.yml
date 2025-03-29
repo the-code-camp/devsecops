@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:  
   app1:
     image: courselabs/app-1:v2

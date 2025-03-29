@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:  
   java-jre-alpine:
     image: courselabs/java:jre-21.12
