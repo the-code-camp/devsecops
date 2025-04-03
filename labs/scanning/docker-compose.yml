@@ -1,7 +1,7 @@
 services:
 
   trivy:
-    image: aquasec/trivy:0.21.1
+    image: aquasec/trivy:0.61.0
     entrypoint: /bin/sh
     stdin_open: true 
     tty: true  
