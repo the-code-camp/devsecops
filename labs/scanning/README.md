@@ -29,7 +29,7 @@ You're connected to the Trivy container. Check the commands you can run, and the
 ```
 trivy
 
-trivy image sixeyed/whoami:21.04
+trivy image thecodecamp/whoami:25.04
 ```
 
 > On the first run Trivy will download the vulnerabilities database, which can take a minute or two
