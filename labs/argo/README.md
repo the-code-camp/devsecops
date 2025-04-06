@@ -20,6 +20,8 @@ It means your cluster can be secured more cleanly, because you don't need a clus
 
 ArgoCD has a server-side component which runs in the cluster and watches the configured Git repos for your projects. There's also a command line tool which you can use to set up and manage projects.
 
+### Download Argo CD CLI
+
 Start by installing the CLI - use the [full install docs](https://argo-cd.readthedocs.io/en/stable/cli_installation/) or one of these quick options:
 
 ```
@@ -42,14 +44,15 @@ argocd version
 
 > You'll see the client version and then a server error - the CLI can't connect to the ArgoCD server, because we haven't deployed it yet.
 
-There's a local copy of the Argo CD spec here:
+Here is the link to the Argo CD spec:
 
-- [argocd/2.1.2.yaml](./specs/argocd/2.1.2.yaml) - it installs a lot of resources, including CustomResourceDefinitions - CRDs - which extend the functionality of Kubernetes. ArgoCD adds an `Application` resource to the cluster.
+- [argocd specs yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml) - it installs a lot of resources, including CustomResourceDefinitions - CRDs - which extend the functionality of Kubernetes. ArgoCD adds an `Application` resource to the cluster.
 
-Deploy the server components:
+### Deploy the Argo CD server components:
 
 ```
-kubectl apply -n argocd -f labs/argo/specs/argocd
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
 Argo installs a new custom object type called _Application_.
@@ -67,23 +70,34 @@ kubectl get all -n argocd
 
 </details><br/>
 
-This installation of ArgoCD includes a web UI. The initial admin password is stored in a Secret - run this to view the password in plain text:
+### Access The Argo CD API Server
 
-```
-kubectl -n argocd get secret argocd-initial-admin-secret -o go-template="{{.data.password | base64decode}}"
-```
+By default, the Argo CD API server is not exposed with an external IP. To access the API server, use the below command to expose the server:
 
-- run this to expose the service through minikube proxy and get the URL:
-```
-minikube service -n argocd argocd-server-np --url
+```sh
+kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
+The API server can then be accessed using https://localhost:8080
 
-Open the UI at http://192.168.49.2:30881, log in with username `admin` and the password from your Secret.
+### Login Using The CLI
+The initial password for the `admin` account is auto-generated and stored as clear text in the field `password` in a secret named `argocd-initial-admin-secret` in your Argo CD installation namespace. You can simply retrieve this password using the `argocd` CLI:
+
+```sh
+argocd admin initial-password -n argocd
+```
+
+Using the username `admin` and the `password` from above, login to Argo CD's IP or hostname:
+
+```sh
+argocd login localhost:8080 
+```
+
+Open the UI at http://localhost:8080, log in with username `admin` and the password from your Secret.
 
 > You'll be redirected to HTTPS with a self-signed certificate, so you'll need to accept the security warning in your browser.
 
-Open https://192.168.49.2:30881/settings/clusters - ArgoCD is registered with the local cluster so it can manage applications, but there are no apps yet.
+Open https://localhost:8080/settings/clusters - ArgoCD is registered with the local cluster so it can manage applications, but there are no apps yet.
 
 ## Configure the Git server
 
@@ -97,8 +111,11 @@ We'll run a local Git server to make the deployment simple:
 
 Deploy the Git server:
 
-```
+```sh
 kubectl apply -f labs/argo/specs/gogs
+
+# get the url for gogs server
+minikube -n infra service gogs --url
 ```
 
 Browse to http://192.168.49.2:30300/ and when the site is ready, sign in with username `courselabs` and password `student`.
@@ -118,8 +135,6 @@ git push labs-argo main:master
 Now connect the ArgoCD CLI to the ArgoCD server, **using your password from the Secret**:
 
 ```
-argocd login 192.168.49.2:30881 --insecure --username admin --password <your-password>
-
 argocd cluster list
 ```
 
@@ -153,7 +168,7 @@ argocd app get whoami
 </details><br/>
 
 
-You can also see the new application in the UI at https://192.168.49.2:30881/applications. You'll see the status is _Synced_ and if you open the app you'll see all the Kubernetes resources.
+You can also see the new application in the UI at https://localhost:8080/applications. You'll see the status is _Synced_ and if you open the app you'll see all the Kubernetes resources.
 
 ArgoCD deploys the app from the YAML specs in the repo - with no pipeline or scripts to maintain. You can test the app at http://192.168.49.2:30010/.
 
