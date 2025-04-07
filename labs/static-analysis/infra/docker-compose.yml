@@ -1,7 +1,7 @@
 services:
 
   sonarqube:
-    image: courselabs/sonarqube:9.2.1
+    image: sonarqube:25.3.0.104237-community
     environment:
       - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
     ports:
