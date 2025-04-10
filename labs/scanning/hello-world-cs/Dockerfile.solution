@@ -20,5 +20,5 @@ RUN trivy --version > /scanner.txt && \
     trivy rootfs -s HIGH --exit-code 1 --no-progress /
 
 # final image
-FROM app as final
+FROM app AS final
 COPY --from=scan /scanner.txt .

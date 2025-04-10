@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /src
 COPY ["hello-world.csproj", "."]
@@ -8,7 +8,7 @@ COPY . .
 RUN dotnet publish "hello-world.csproj" -c Release -o /out
 
 # app image
-FROM mcr.microsoft.com/dotnet/runtime:6.0 AS app
+FROM mcr.microsoft.com/dotnet/runtime:8.0 AS app
 WORKDIR /app
 COPY --from=build /out .
 ENTRYPOINT ["dotnet", "hello-world.dll"]
@@ -20,5 +20,5 @@ RUN trivy --version > /scanner.txt && \
     trivy rootfs -s HIGH --exit-code 1 --no-progress /
 
 # final image
-FROM app as final
+FROM app AS final
 COPY --from=scan /scanner.txt .
