@@ -29,7 +29,9 @@ SonarQube can take a minute or two to spin up. When the container is running, lo
 - login: `admin`
 - password: `admin`
 
-It will ask you to set new password, `admin2` is fine.
+It will ask you to set new password, `P@ssword1234` is fine.
+
+After logging in, a popup will appear with two buttons: 'Let's go' and `'Later'`. Click on `'Later'` to proceed.
 
 This is a new SonarQube server with no projects set up, but you can browse the rules it uses.
 
@@ -55,17 +57,29 @@ Just browsing the rules for your language can help you write better and more sec
 
 We'll create a new project we can use to analyse some .NET Code.
 
-Browse to http://localhost:9000/projects/create and configure the new project:
+Browse to http://localhost:9000/projects/create?mode=manual and configure the new project:
 
-- select _Manually_ (SonarQube can integrate with other services, but we'll set it up manually)
+- set the _Project display name_ to be `hello-world-cs`
 
 - set the _Project key_ to be `hello-world-cs`
 
-- click _Set Up_
+- set the _Main branch name_ to be `main`
 
-- create a token, call it anything e.g. `devops`
+- click _Next_
 
-- SonarQube displays the token - we'll use this later for authentication, so copy the token (it looks like `d19405a6925267bbcd52221c407bc01c2010c82b` but yours will be different)
+- Choose the baseline for new code for this project. Select `Use the global setting` option.
+
+- click _Create Project_ button.
+
+### Analysis Method
+
+- select _Locally_ (SonarQube can integrate with other services, but we'll set it up locally)
+
+- Provide a token name as _`devops`_ and set the expiry to "30 days"
+
+- Click _Generate_ button.
+
+- SonarQube displays the token - we'll use this later for authentication, so copy the token (it looks like `sqp_0295b80366b763e08d45f0d8a0271a4a175d8475` but yours will be different)
 
 - click _Continue_
 
@@ -129,8 +143,9 @@ There are a few issues with the project. Ideally we want the build to fail if th
 Browse to http://localhost:9000/quality_gates/. You'll see a default gate already there called _Sonar way_. This only operates on new code - changes which have been made since the previous analysis. We want a quality gate which runs on all code:
 
 - click _Copy_ to copy the default gate
-- call the new gate `courselabs`
-- click _Add Condition_
+- call the new gate `courselabs` and click _Copy_ button
+- scroll down the page and click _Unlock editing_ button
+- now click _Add Condition_ button
 - select to run _On Overall Code_
 - in the dropdown choose _Security Rating_
 - for the operator select worse than _A_
